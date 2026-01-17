@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenso Royal Cut | Online Booking</title>
+    <style>
+        /* CSS for Styling */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        h1 { color: #2c3e50; margin-bottom: 0.5rem; }
+        p { color: #7f8c8d; margin-bottom: 1.5rem; }
+        .form-group { margin-bottom: 1rem; text-align: left; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #34495e; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #3498db; color: white; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; transition: background 0.3s; }
+        button:hover { background-color: #2980b9; }
+        .success-msg { display: none; color: #27ae60; margin-top: 1rem; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Lenso Royal Cut</h1>
+    <p>Premium Morning Slots (5 AM - 8 AM)</p>
+    
+    <form id="bookingForm">
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" required placeholder="Enter your name">
+        </div>
+
+        <div class="form-group">
+            <label for="date">Select Date</label>
+            <input type="date" id="date" required>
+        </div>
+
+        <div class="form-group">
+            <label for="time">Available Slots</label>
+            <select id="time" required>
+                <option value="" disabled selected>Choose a time</option>
+                <option value="05:00">05:00 AM</option>
+                <option value="05:30">05:30 AM</option>
+                <option value="06:00">06:00 AM</option>
+                <option value="06:30">06:30 AM</option>
+                <option value="07:00">07:00 AM</option>
+                <option value="07:30">07:30 AM</option>
+                <option value="08:00">08:00 AM</option>
+            </select>
+        </div>
+
+        <button type="submit">Confirm Booking</button>
+    </form>
+
+    <div id="message" class="success-msg">Booking Successful for <span id="user"></span>!</div>
+</div>
+
+<script>
+    // JavaScript for Functionality
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+
+        if(name && date && time) {
+            document.getElementById('user').innerText = name + " at " + time;
+            document.getElementById('message').style.display = 'block';
+            this.reset(); // Clear the form
+        }
+    });
+
+    // Set minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('date').setAttribute('min', today);
+</script>
+
+</body>
+</html>
